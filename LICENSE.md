@@ -1,4 +1,4 @@
-Copyright (c) 2017 d4nuu8  <d4nuu8@gmail.com>
+Copyright (c) 2017 d4nuu8  <d4nuu8@gmail.com>  
 Copyright (c) 2019 andyprv <andyprv@web.de>
 
 Permission is hereby granted, free of charge, to any person obtaining
