@@ -1,6 +1,6 @@
-# <span style="color:blue;">**Yaskawa**</span> Robot Language support for Visual Studio Code
+# <span style="color:blue">**Yaskawa**</span> Robot Language support for Visual Studio Code
 
-
+# <img src="images/logo.png" width="40" height="40" />askawa Robot Language support
 
 This is the README for your extension "yaskawa-inform". 
 After writing up a brief description, we recommend including the following sections.
