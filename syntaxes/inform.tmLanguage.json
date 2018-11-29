@@ -1,0 +1,46 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Yaskawa-Inform",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+				"match": "(?i)\\b(CONTINUE|EXIT|FOR|TO|STEP|ENDFOR|GOTO|HALT|IF|THEN|ELSE|ENDIF|IFTHENEXP|LOOP|ENDLOOP|REPEAT|UNTIL|SWITCH|CASE|DEFAULT|ENDSWITCH|WAIT|FOR|SEC|WHILE|ENDWHILE|RETURN|BRAKE|RESUME)\\b",
+				"name": "keyword.control.inform"
+				},
+				{
+				"match": "(?i)(\\b(B_)?(AND|OR|EXOR)\\b)|(\\.|,|\\+|-|\\*|\\/|:|(?<!=)={1,2}|<>|<|>|<=|>=|\\(|\\))",
+				"name": "keyword.operator.inform"
+				 },
+				{
+				"match": "(?i)\\b(INT|REAL|BOOL|CHAR|AXIS|PULSE|TIMER|FRAME|DOUT|POS|E6POS|ENUM|STRUC)\\b",
+				"name": "storage.type.inform"
+				},
+				{
+				"match": "(?i)\\b(CONST|GLOBAL|DECL|DEFFCT|EXTFCT|SIGNAL)\\b",
+				"name": "storage.modifier.inform"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.inform",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.inform",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.inform"
+}
