@@ -2,7 +2,7 @@
 
 
 
-This is the README for your extension "yaskawa-inform". 
+This is the README for your extension "yaskawa-inform".   
 After writing up a brief description, we recommend including the following sections.
 
 ---
