@@ -8,8 +8,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Initial release
 
 ## 0.3.0 planed as "Nikolaus Release" 06.12.2018
-- basic syntax hightning based on DX200 JOB Files
-- basic autocomplete Demo Functions
+Added:  
+- basic syntax highlighting based on DX200 JOB Files
+- basic autocomplete Demo Functions  
+
+Changed:  
 - beautify README.md
 
 ## 0.2.0 - 2018.11.30
