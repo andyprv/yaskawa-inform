@@ -16,7 +16,7 @@
         "languages": [{
             "id": "inform",
             "aliases": ["Yaskawa-Inform", "inform"],
-            "extensions": [".jbi",".JBI",".cnd",".CND",".dat",".DAT"],
+            "extensions": [".jbi",".JBI",".cnd",".CND",".dat",".DAT",".prm",".PRM"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{

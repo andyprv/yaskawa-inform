@@ -1,46 +1,195 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Yaskawa-Inform",
+	"version": "0.3.0",
+	"scopeName": "source.inform",
+	"fileTypes": [
+		".jbi",
+		".cnt",
+		".prm"
+	],
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#control-words"
 		},
 		{
-			"include": "#strings"
+			"include": "#operators"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#variable-types"
+		},
+		{
+			"include": "#support"
+		},
+		{
+			"include": "#variable-modifiers"
+		},
+		{
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.inform"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.inform"
+				}
+			},
+			"name": "string.quoted.double.inform"
+		},
+		{
+			"begin": "'",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.inform"
+				}
+			},
+			"end": "\\n",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.end.inform"
+				}
+			},
+			"name": "string.quoted.single.inform"
+		},
+		{
+			"begin": "!",
+			"end": "\\n",
+			"name": "comment.line.inform"
+		},
+		{
+			"captures": {
+				"1": {
+					"name": "punctuation.separator.variable-access.inform"
+				},
+				"2": {
+					"name": "variable.other.dot-access.inform"
+				}
+			},
+			"match": "(\\.)([a-zA-Z_][a-zA-Z_0-9]*)\\b(?!\\s*\\()"
 		}
 	],
 	"repository": {
-		"keywords": {
+		"control-words": {
 			"patterns": [
 				{
-				"match": "(?i)\\b(CONTINUE|EXIT|FOR|TO|STEP|ENDFOR|GOTO|HALT|IF|THEN|ELSE|ENDIF|IFTHENEXP|LOOP|ENDLOOP|REPEAT|UNTIL|SWITCH|CASE|DEFAULT|ENDSWITCH|WAIT|FOR|SEC|WHILE|ENDWHILE|RETURN|BRAKE|RESUME)\\b",
-				"name": "keyword.control.inform"
+					"match": "\\b(MACRO*|MODULE|endmodule|ENDMODULE|proc|PROC|endproc|ENDPROC|func|FUNC|endfunc|ENDFUNC|trap|TRAP|endtrap|ENDTRAP)\\b",
+					"name": "keyword.control.inform"
 				},
 				{
-				"match": "(?i)(\\b(B_)?(AND|OR|EXOR)\\b)|(\\.|,|\\+|-|\\*|\\/|:|(?<!=)={1,2}|<>|<|>|<=|>=|\\(|\\))",
-				"name": "keyword.operator.inform"
-				 },
-				{
-				"match": "(?i)\\b(INT|REAL|BOOL|CHAR|AXIS|PULSE|TIMER|FRAME|DOUT|POS|E6POS|ENUM|STRUC)\\b",
-				"name": "storage.type.inform"
+					"match": "\\b(record|RECORD|endrecord|ENDRECORD)\\b",
+					"name": "keyword.control.inform"
 				},
 				{
-				"match": "(?i)\\b(CONST|GLOBAL|DECL|DEFFCT|EXTFCT|SIGNAL)\\b",
-				"name": "storage.modifier.inform"
+					"match": "\\b(if|IFTHEN|THEN|else|ELSE|elseif|ELSEIF|ENDIF)\\b",
+					"name": "keyword.control.inform"
+				},
+				{
+					"match": "\\b(while|WHILE|do|DO|endwhile|ENDWHILE)\\b",
+					"name": "keyword.control.inform"
+				},
+				{
+					"match": "\\b(for|FOR|from|FROM|to|TO|step|STEP|endfor|ENDFOR)\\b",
+					"name": "keyword.control.inform"
+				},
+				{
+					"match": "\\b(test|TEST|case|CASE|default|DEFAULT|JOB|END)\\b",
+					"name": "keyword.control.inform"
+				},
+				{
+					"match": "\\b(JUMP|return|RETURN|goto|GOTO|stop|STOP|error|ERROR|exit|EXIT)\\b",
+					"name": "keyword.control.inform"
 				}
 			]
 		},
-		"strings": {
-			"name": "string.quoted.double.inform",
-			"begin": "\"",
-			"end": "\"",
+		"operators": {
 			"patterns": [
 				{
-					"name": "constant.character.escape.inform",
-					"match": "\\\\."
+					"match": ":=",
+					"name": "keyword.operator.assignment.inform"
+				},
+				{
+					"match": "[*/+-]|\\b(MOD|DIV|ADD|SUB|MUL)\\b",
+					"name": "keyword.operator.arithmetic.inform"
+				},
+				{
+					"match": "(=(?<!:)|<=|>=|<>|<|>)",
+					"name": "keyword.operator.comparison.inform"
+				},
+				{
+					"match": "\\b([aA][nN][dD]|[nN][oO][tT]|[oO][rR])\\b",
+					"name": "keyword.operator.logical.inform"
+				},
+				{
+					"match": "\\b([iI][nN][cC][rR]|[dD][eE][cC][rR])\\b",
+					"name": "keyword.operator.increment-decrement.inform"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"match": "\\b(([0-9]+\\.?[0-9]*)|([0-9]+\\.?[0-9]*)((e|E)(\\+|-)?[0-9]+)?)\\b",
+					"name": "constant.numeric.inform"
+				},
+				{
+					"match": "\\b([tT][rR][uU][eE]|[fF][aA][lL][sS][eE])\\b",
+					"name": "constant.language.inform"
+				}
+			]
+		},
+		"variable-types": {
+			"patterns": [
+				{
+					"match": "\\b(num|dnum|bool|string|clock|errnum|intnum)\\b",
+					"name": "storage.type.inform"
+				},
+				{
+					"match": "\\b(POS|NPOS|MOVJ|MOVL|mecunit|wobjdata|tooldata|loaddata|triggdata|speeddata|zonedata|stoppointdata)\\b",
+					"name": "storage.type.inform"
+				},
+				{
+					"match": "\\b(POSTYPE|TOOL|MREG)\\b",
+					"name": "storage.type.inform"
+				},
+				{
+					"match": "\\b(signaldi|signaldo|signalai|signalao|signalgi|signalgo|dionum)\\b",
+					"name": "storage.type.inform"
+				},
+				{
+					"match": "\\b(PULSE|TSYNC|WAIT|StatsData|ContainerItem)\\b",
+					"name": "support.type.bpr.inform"
+				}
+			]
+		},
+		"variable-modifiers": {
+			"patterns": [
+				{
+					"match": "\\b(var|VAR|const|CONST|pers|PERS|task|TASK|INOUT|local|LOCAL|global|GLOBAL|task|TASK)\\b",
+					"name": "storage.modifier.inform"
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"name": "support.type.inform",
+					"match": "(?i)\\b(aiotrigg|btnres|busstate|buttondata|clock|confdata|corrdescr|datapos|dionum|dir|dnum|errdomain|errnum|errstr|errtype|event_type|exec_level|extjoint|handler_type|icondata|identno|intnum|iodev|iounit_state|jointtarget|listitem|loaddata|loadidnum|loadsession|mecunit|motsetdata|opcalc|opnum|orient|paridnum|paridvalidnum|pathrecid|pos|pose|progdisp|rawbytes|restartdata|rmqheader|rmqmessage|rmqslot|robjoint|robtarget|shapedata|signalxx|socketdev|socketstatus|speeddata|stoppointdata|stringdig|switch|symnum|syncident|taskid|tasks|testsignal|tooldata|tpnum|trapdata|triggdata|triggios|triggiosdnum|triggstrgo|tunetype|uishownum|wobjdata|wzstationary|wztemporary|zonedata)\\b"
+				},
+				{
+					"name": "support.function.inform",
+					"match": "(?i)\\b(ARCON|ARCOF|TSYNC|DOUT|IN|OT|WVOF|Break|WVON|SETREG|PAUSE|SFTOF|SFTON|Clear|ClearIOBuff|ClearPath|ClearRawBytes|ClkReset|ClkStart|ClkStop|Close|CloseDir|ConfJ|ConfL|CopyFile|CopyRawBytes|CorrClear|CorrCon|CorrDiscon|CorrWrite|DeactUnit|Decr|DitherAct|DitherDeact|DropWObj|EOffsOff|EOffsOn|EOffsSet|EraseModule|ErrLog|ErrRaise|ErrWrite|ExitCycle|GetDataVal|GetSysData|GetTrapData|GripLoad|HollowWristReset|IDelete|IDisable|IEnable|IError|Incr|IndAMove|IndCMove|IndDMove|IndReset|IndRMove|InvertDO|IOBusStart|IOBusState|IODisable|IOEnable|IPers|IRMQMessage|ISignalAI|ISignalAO|ISignalDI|ISignalDO|ISignalGI|ISignalGO|ISleep|ITimer|IVarValue|IWatch|Label|Load|LoadId|MakeDir|ManLoadIdProc|MechUnitLoad|MotionSup|MoveAbsJ|MoveC|MoveCDO|MoveCSync|MoveExtJ|MoveJ|MoveJDO|MoveJSync|MoveL|MoveLDO|MoveLSync|MToolRotCalib|MToolTCPCalib|Open|OpenDir|PackDNHeader|PackRawBytes|PathAccLim|PathRecMoveBwd|PathRecMoveFwd|PathRecStart|PathRecStop|PathResol|SET|GETE|CALL|ProcerrRecovery|PulseDO|RaiseToUser|ReadAnyBin|ReadBlock|ReadCfgData|ReadErrData|ReadRawBytes|RemoveDir|RemoveFile|RenameFile|Reset|ResetPPMoved|ResetRetryCount|RestoPath|Rewind|RMQEmptyQueue|RMQFindSlot|RMQGetMessage|RMQGetMsgData|RMQGetMsgHeader|RMQReadWait|RMQSendMessage|RMQSendWait|Save|SCWrite|SearchC|SearchExtJ|SearchL|SenDevice|Set|SetAllDataVal|SetAO|SetDataSearch|SetDataVal|SetDO|SetGO|SetSysData|SingArea|SkipWarn|SocketAccept|SocketBind|SocketClose|SocketConnect|SocketCreate|SocketListen|SocketReceive|SocketSend|SoftAct|SoftDeact|SpeedRefresh|SpyStart|SpyStop|StartLoad|StartMove|StartMoveRetry|STCalib|STClose|StepBwdPath|STIndGun|STIndGunReset|SToolRotCalib|SToolTCPCalib|Stop|STOpen|StopMove|StopMoveReset|StorePath|STTune|STTuneReset|SyncMoveOff|SyncMoveOn|SyncMoveResume|SyncMoveSuspend|SyncMoveUndo|SystemStopAction|TestSignDefine|TestSignReset|TextTabInstall|TPErase|TPReadDnum|TPReadFK|TPReadNum|TPShow|TPWrite|TriggC|TriggCheckIO|TriggEquip|TriggInt|TriggIO|TriggJ|TriggL|TriggLIOs|TriggRampAO|TriggSpeed|TriggStopProc|TryInt|TuneReset|TuneServo|UIMsgBox|UIShow|UnLoad|UnpackRawBytes|VelSet|WaitAI|WaitAO|WaitDI|WaitDO|WaitGI|WaitGO|WaitLoad|WaitRob|WaitSyncTask|WaitTestAndSet|WaitTime|WaitUntil|WaitWObj|WarmStart|WorldAccLim|Write|WriteAnyBin|WriteBin|WriteBlock|WriteCfgData|WriteRawBytes|WriteStrBin|WriteVar|WZBoxDef|WZCylDef|WZDisable|WZDOSet|WZEnable|WZFree|WZHomeJointDef|WZLimJointDef|WZLimSup|WZSphDef|Abs|ACos|AOutput|ArgName|ASin|ATan|ATan2|BitAnd|BitCheck|BitLSh|BitNeg|BitOr|BitRSh|BitXOr|ByteToStr|CalcJointT|CalcRobT|CalcRotAxFrameZ|CalcRotAxisFrame|CDate|CJointT|ClkRead|CorrRead|Cos|CPos|CRobT|CSpeedOverride|CTime|CTool|CWObj|DecToHex|DefAccFrame|DefDFrame|DefFrame|Dim|Distance|DnumToNum|DotProd|DOutput|EulerZYX|EventType|ExecHandler|ExecLevel|Exp|FileSize|FileTime|FSSize|GetMecUnitName|GetNextMechUnit|GetNextSym|GetSysInfo|GetTaskName|GetTime|GInputDnum|GOutput|GOutputDnum|HexToDec|IndInpos|IndSpeed|IOUnitState|IsFile|IsMechUnitActive|IsPers|IsStopMoveAct|IsStopStateEvent|IsSyncMoveOn|IsSysId|IsVar|MaxRobSpeed|MirPos|ModExist|ModTime|MotionPlannerNo|NonMotionMode|NOrient|NumToDnum|NumToStr|Offs|OpMode|OrientZYX|ORobT|ParIdPosValid|ParIdRobValid|PathLevel|PathRecValidBwd|PathRecValidFwd|PFRestart|PoseInv|PoseMult|PoseVect|Pow|PPMovedInManMode|Present|ProgMemFree|RawBytesLen|ReadBin|ReadDir|ReadMotor|ReadNum|ReadStr|ReadStrBin|ReadVar|RelTool|RemainingRetries|RMQGetSlotName|RobName|RobOS|Round|RunMode|Sin|SocketGetStatus|Sqrt|STCalcForce|STCalcTorque|STIsCalib|STIsClosed|STIsIndGun|STIsOpen|StrDigCalc|StrDigCmp|StrFind|StrLen|StrMap|StrMatch|StrMemb|StrOrder|StrPart|StrToByte|StrToVal|Tan|TaskRunMec|TaskRunRob|TasksInSync|TestAndSet|TestDI|TestSignRead|TextGet|TextTabFreeToUse|TextTabGet|Trunc|Type|UIAlphaEntry|UIClientExist|UIDnumEntry|UIDnumTune|UIListView|UIMessageBox|UINumEntry|UINumTune|ValidIO|ValToStr|VectMagn)\\b"
 				}
 			]
 		}
-	},
-	"scopeName": "source.inform"
+	}
 }
+
+
+
+

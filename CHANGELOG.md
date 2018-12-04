@@ -7,9 +7,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 - Initial release
 
+## 0.3.0 planed as "Nikolaus Release" 06.12.2018
+- basic syntax hightning based on DX200 JOB Files
+- basic autocomplete Demo Functions
+- beautify README.md
 
-## 0.0.2
-- Initial release
+## 0.2.0 - 2018.11.30
+- Initial alpha release
 
 ## 0.0.1 - 2018.11.29
 - start rework for Yaskawa Inform
