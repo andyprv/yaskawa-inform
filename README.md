@@ -27,30 +27,24 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ---
 ## Release Notes
-
-Users appreciate release notes as you update your extension.
-
+Users appreciate release notes as you update your extension.  
 [check Changelog for Details on this project](CHANGELOG.md)
 
-
-## [Unreleased]
+## 0.3.0  "Nikolaus Release" 05.12.2018
 - Initial release
-
-
 
 
 --------------------------------------------------------
 ## ToDo : 
 
-Syntax missing :
+Syntax missing comandos:
 
-- [ ] MUL  | DIV    | ADD       | SUB
-- [ ] SETE | NAME   | GROUP?
+- [X] MUL  | DIV    | ADD       | SUB
+- [ ] SETE | NAME   | GROUP.
 - [ ] INST | DATE   | ATTR      | LVARS
+- [ ] DELAY  
 
-
-
-
+- reduce colors 
 
 
 ---

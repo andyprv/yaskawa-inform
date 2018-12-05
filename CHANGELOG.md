@@ -3,11 +3,11 @@ All notable changes to the "Yaskawa-Inform" extension will be documented in this
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+---
 
-## [Unreleased]
+## 0.3.0  "Nikolaus Release" 05.12.2018
 - Initial release
 
-## 0.3.0 planed as "Nikolaus Release" 06.12.2018
 Added:  
 - basic syntax highlighting based on DX200 JOB Files
 - basic autocomplete Demo Functions  

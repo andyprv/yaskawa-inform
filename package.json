@@ -2,7 +2,7 @@
     "name": "inform",
     "displayName": "Yaskawa Inform",
     "description": "Yaskawa Inform (Yaskawa Robot Language) support in Visual Studio Code",
-    "version": "0.0.1",
+    "version": "0.3.1",
     "publisher": "andyprv",
     "homepage": "https://github.com/andyprv/yaskawa-inform",
     "icon" : "images/logo.png",    
