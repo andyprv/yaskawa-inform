@@ -8,6 +8,23 @@
         ],
         "description": "Module"
     },
+
+    "/JOB": {
+        "prefix": "/job",
+        "body": [
+            "/JOB",
+            "//NAME ${1:Enter title}",
+            "//POS",
+            "///NPOS 0,0,0,0,0,0",
+            "//INST",
+            "///DATE ${2:Insert datetime string (⇧⌘I or Ctrl+Shift+I)}",
+            "///ATTR SC,RW",
+            "NOP",
+            "'***** ${3:Enter comment} *****",
+            "$0"
+            ],
+        "description": "JOB Header"
+    },
     "Function": {
         "prefix": "function",
         "body": [
@@ -26,14 +43,25 @@
         ],
         "description": "For loop"
     },
-    "If statement": {
+    "IF statement": {
         "prefix": "if",
         "body": [
-            "IF (${1:condition}) THEN",
-            "$0",
-            "ENDIF"
+            "IFTHEN (${1:condition})",
+            "    ${2:instruction}",
+            "ENDIF",
+            "$0"
         ],
-        "description": "If statement"
+        "description": "IFTHEN statement"
+    },
+    "IF CALL JOB statement": {
+        "prefix": "ifc",
+        "body": [
+            "IFTHEN (${1:condition})",
+            "    CALL JOB:${2:jobname}",
+            "ENDIF",
+            "$0"
+        ],
+        "description": "IFTHEN CALL JOB"
     },
     "Switch statement": {
         "prefix": "switch",

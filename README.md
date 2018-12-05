@@ -2,64 +2,52 @@
 
 # <img src="images/logo.png" width="40" height="40" />askawa Robot Language support
 
-This is the README for your extension "yaskawa-inform". 
+This is the README for your extension "yaskawa-inform".   
 After writing up a brief description, we recommend including the following sections.
-
-
-
-## ToDo : 
-- [ ] Step 1
-- [ ] Step 2
-- [X] add Git Repo
 
 ---
 
-## Features
+## Features :
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+>Syntax highlight in Action ...
 
-For example if there is an image subfolder under your extension project workspace:
+![Syntax](images/syntax.png)
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+>Code completion in Action ...
 
-## Requirements
+![completion](images/completion.gif)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
+---
 ## Known Issues
 
 Calling out known issues can help limit users opening duplicate issues against your extension.
 
+---
 ## Release Notes
+Users appreciate release notes as you update your extension.  
+[check Changelog for Details on this project](CHANGELOG.md)
 
-Users appreciate release notes as you update your extension.
+## 0.3.0  "Nikolaus Release" 05.12.2018
+- Initial release
 
-### 1.0.0
 
-Initial release of ...
+--------------------------------------------------------
+## ToDo : 
 
-### 1.0.1
+Syntax missing comandos:
 
-Fixed issue #.
+- [X] MUL  | DIV    | ADD       | SUB
+- [ ] SETE | NAME   | GROUP.
+- [ ] INST | DATE   | ATTR      | LVARS
+- [ ] DELAY  
 
-### 1.1.0
+- reduce colors 
 
-Added features X, Y, and Z.
 
------------------------------------------------------------------------------------------------------------
+---
 
 ## Working with Markdown
 

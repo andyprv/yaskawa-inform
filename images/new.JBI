@@ -1,0 +1,26 @@
+/JOB
+//NAME titel
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018-12-05 19:11:25
+///ATTR SC,RW
+NOP
+'***** comment *****
+
+
+IFTHEN (aaa)
+    bbb
+ENDIF
+
+IFTHEN (aaa)
+    CALL JOB:bbb
+ENDIF
+
+
+
+
+
+
+
+
