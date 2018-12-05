@@ -5,7 +5,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ---
 
-## 0.3.0  "Nikolaus Release" 05.12.2018
+## 0.3.3  update "Nikolaus Release"
+
+Changed:  
+- package.json changes due to complaine of 'vsce' deploy tool 
+- README.md changes due to complaine of 'vsce' deploy tool 
+
+
+## 0.3.2  "Nikolaus Release" 05.12.2018
 - Initial release
 
 Added:  
@@ -40,6 +47,7 @@ Changed:
 * Mention whether you follow Semantic Versioning.
 
 > Types of changes :
+
 - Added for new features.
 - Changed for changes in existing functionality.
 - Deprecated for soon-to-be removed features.

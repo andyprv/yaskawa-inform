@@ -1,11 +1,12 @@
 {
-    "name": "inform",
+    "name"       : "inform",
     "displayName": "Yaskawa Inform",
     "description": "Yaskawa Inform (Yaskawa Robot Language) support in Visual Studio Code",
-    "version": "0.3.1",
-    "publisher": "andyprv",
-    "homepage": "https://github.com/andyprv/yaskawa-inform",
-    "icon" : "images/logo.png",    
+    "version"    : "0.3.2",
+    "publisher"  : "andyprv",
+    "repository" : "https://github.com/andyprv/yaskawa-inform",
+    "homepage"   : "http://meierltd.de",
+    "icon"       : "images/logo.png",
     "engines": {
         "vscode": "^1.29.0"
     },
@@ -13,23 +14,38 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "inform",
-            "aliases": ["Yaskawa-Inform", "inform"],
-            "extensions": [".jbi",".JBI",".cnd",".CND",".dat",".DAT",".prm",".PRM"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "inform",
-            "scopeName": "source.inform",
-            "path": "./syntaxes/inform.tmLanguage.json"
-        }],
-		"snippets": [
-			{
-				"language": "inform",
-				"path": "./snippets/inform.json"
-			}
-		]
-
+        "languages": [
+            {
+                "id": "inform",
+                "aliases": [
+                    "Yaskawa-Inform",
+                    "inform"
+                ],
+                "extensions": [
+                    ".jbi",
+                    ".JBI",
+                    ".cnd",
+                    ".CND",
+                    ".dat",
+                    ".DAT",
+                    ".prm",
+                    ".PRM"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "inform",
+                "scopeName": "source.inform",
+                "path": "./syntaxes/inform.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "inform",
+                "path": "./snippets/inform.json"
+            }
+        ]
     }
 }

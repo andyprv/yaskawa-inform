@@ -1,9 +1,8 @@
 # <span style="color:blue">**Yaskawa**</span> Robot Language support for Visual Studio Code
 
-# <img src="images/logo.png" width="40" height="40" />askawa Robot Language support
+# <img src="https://raw.githubusercontent.com/andyprv/yaskawa-inform/master/images/logo.png" width="40" height="40" />askawa Robot Language support
 
-This is the README for your extension "yaskawa-inform".   
-After writing up a brief description, we recommend including the following sections.
+Syntax highlightning & code completion for JOB Files
 
 ---
 
@@ -11,13 +10,13 @@ After writing up a brief description, we recommend including the following secti
 
 >Syntax highlight in Action ...
 
-![Syntax](images/syntax.png)
+![Syntax](https://raw.githubusercontent.com/andyprv/yaskawa-inform/master/images/syntax.png)
+
 
 
 >Code completion in Action ...
 
-![completion](images/completion.gif)
-
+![completion](https://raw.githubusercontent.com/andyprv/yaskawa-inform/master/images/completion.gif)
 
 
 ---
@@ -30,7 +29,7 @@ Calling out known issues can help limit users opening duplicate issues against y
 Users appreciate release notes as you update your extension.  
 [check Changelog for Details on this project](CHANGELOG.md)
 
-## 0.3.0  "Nikolaus Release" 05.12.2018
+## 0.3.1  "Nikolaus Release" 05.12.2018
 - Initial release
 
 
@@ -39,12 +38,12 @@ Users appreciate release notes as you update your extension.
 
 Syntax missing comandos:
 
-- [X] MUL  | DIV    | ADD       | SUB
-- [ ] SETE | NAME   | GROUP.
-- [ ] INST | DATE   | ATTR      | LVARS
-- [ ] DELAY  
+- [X] MUL  | DIV    | ADD       | SUB  
+- [ ] SETE | NAME   | GROUP.  
+- [ ] INST | DATE   | ATTR      | LVARS  
+- [ ] DELAY    
 
-- reduce colors 
+- reduce colors   
 
 
 ---
