@@ -1,0 +1,61 @@
+/JOB
+//NAME ADDITIONAL-TACK-BACK-ST1
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/09/27 11:07
+///ATTR SC,RW
+///GROUP1 RB1,BS1
+///GROUP2 ST1
+NOP
+'***** additional tack station 1
+'back side                 *****
+' 
+'sensor type
+' 
+IFTHEN D005=8
+	'sensor body model CMF100
+	'
+	'*****
+	'with calculated tack position
+	'
+	'set angle wheel in 0.0000
+	 SET D018 1200000
+	'
+	 CALL JOB:ADD-TACK-POS-BACK-ST1
+	'
+	'***** go to park position
+	 CALL JOB:PARK-POS-ZONE-2-AUTO
+	'
+	'set here teached program if
+	'neccesary and defined
+	'
+	 CALL JOB:ADD-TACK-BY-TEACH-IN
+	'
+ENDIF
+'***** additional tack station 1
+'back side                 *****
+' 
+'sensor type
+' 
+IFTHEN D005=4
+	'sensor body model F200
+	'
+	'*****
+	'with calculated tack position
+	'
+	'set angle wheel in 0.0000
+	 SET D018 1800000
+	'
+	 CALL JOB:ADD-TACK-POS-BACK-ST1
+	'
+	'***** go to park position
+	 CALL JOB:PARK-POS-ZONE-2-AUTO
+	'
+	'set here teached program if
+	'neccesary and defined
+	'
+	 CALL JOB:ADD-TACK-BY-TEACH-IN
+	'
+ENDIF
+END

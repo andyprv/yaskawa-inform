@@ -1,0 +1,41 @@
+/JOB
+//NAME HOME-POSITIE-STATION-1
+//POS
+///NPOS 0,0,0,0,0,1
+///TOOL 0
+///POSTYPE ANGLE
+///ANGLE
+EX00000=0.0000
+//INST
+///DATE 2018/11/01 13:51
+///ATTR SC,RW
+///GROUP1 ST1
+NOP
+*top
+IFTHEN IN#(510)=OFF
+	 SET B003 6
+	 PAUSE
+	 JUMP *top
+ENDIF
+WAIT IN#(510)=ON
+SET B003 0
+'********************************
+'"
+'----- M-RESET station 1 -----
+'"
+MRESET ST
+SETE EX000 (1) 0
+'"
+'********************************
+'"
+'--- Home position station 1 ---
+'"
+WAIT IN#(510)=ON
+MOVJ EX000 VJ=100.00
+'"
+'----- Check cube -----
+'"
+WAIT SOUT#(63)=ON
+'"
+'********************************
+END

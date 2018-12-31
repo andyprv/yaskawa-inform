@@ -1,0 +1,134 @@
+/JOB
+//NAME CONTOUR_MEASUREMENT-PRODUCT-S1
+//POS
+///NPOS 1,0,0,5,0,0
+///TOOL 0
+///POSTYPE PULSE
+///PULSE
+C00000=-1083,-206987,-86060,-60,-73524,526
+///POSTYPE BASE
+///RECTAN
+///RCONF 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00004=0.000,0.000,114.813,0.0000,0.0000,0.0000
+///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00030=2783.184,410.000,-595.000,-179.7925,-0.2916,30.0000
+P00031=1907.913,12.987,-397.166,-179.0185,-0.7815,30.0006
+P00032=2781.525,399.515,-380.917,-178.4871,0.5013,29.9994
+P00044=1854.454,-14.726,-4.135,-179.6974,-1.0435,-0.0157
+//INST
+///DATE 2018/11/14 13:34
+///ATTR SC,RW
+///GROUP1 RB1
+///LVARS 2,2,0,0,0,0,0,0
+NOP
+IFTHEN IN#(613)=ON
+	 GETREG LI000 MREG#(1)
+	 SET LB000 LI000
+	 JUMP LABEL: LB000
+ENDIF
+SET B007 0
+SET B011 0
+'********************************
+' 
+'--Product beneed Camera-
+WAIT B006=0
+'********************************
+' 
+'--Check if type of sensor is ok-
+'---Under laser sensor--
+' 
+'********************************
+'---Home return register 900---
+MOVL C00000 V=416.7
+'*****
+SETREG MREG#(1) 40
+*GetFlg
+' 
+'********************************
+CALL JOB:OPEN-CURTAIN
+'********************************
+' 
+SFTOF
+'--Position before Laser--
+DOUT OT#(3) OFF
+PULSE OT#(2) T=1.00
+MOVL P0031 V=416.7
+'*****
+SETREG MREG#(1) 41
+' 
+'********************************
+' 
+'--Position direct beneed Laser--
+'---Home return register 900---
+WAIT IN#(16)=OFF
+SFTOF
+MOVL P0032 V=416.7 PL=0
+'*****
+SETREG MREG#(1) 42
+' 
+SHCKSET SSL#(1)
+'********************************
+'Original
+IFTHEN B013=1
+	 SETE P0004 (3) D020
+ENDIF
+IFTHEN B014=1
+	 SETE P0004 (3) D021
+ENDIF
+SFTON P0004
+'Flange position
+MOVL P0030 V=23.0
+'********************************
+'Lay flange on camera table
+' 
+IFTHEN B006=0
+	 CALL JOB:UNCLAMP_GRIPPER
+ELSE
+	 CALL JOB:CLAMP_GRIPPER
+	 SET B006 2
+ENDIF
+INC B007
+TIMER T=1.00
+'********************************
+'Move back from camera
+'********************************
+SFTOF
+SHCKRST
+' 
+'--Position direct beneed Laser--
+'---Home return register 900---
+*42
+MOVL P0032 V=416.7
+'*****
+SETREG MREG#(1) 42
+IFTHEN B006=0
+	 SET B006 1
+ENDIF
+' 
+'********************************
+'--Position before Laser--
+*41
+MOVL P0031 V=500.0
+'*****
+SETREG MREG#(1) 41
+' 
+'********************************
+CALL JOB:CLOSE-CURTAIN IF B007=2
+'********************************
+JUMP *Proces IF B006=2
+MACRO1 MJ#(1) ARGF6 ARGF64
+TIMER T=3.00
+JUMP *GetFlg IF B006=1
+*Proces
+SET B006 0
+'********************************
+SET B005 0
+IFTHEN IN#(528)=OFF
+	 SET B011 1
+	*40
+	 MOVL P0044 V=250.0
+	'*****
+	 SETREG MREG#(1) 40
+ENDIF
+*END
+END

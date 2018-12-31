@@ -1,0 +1,179 @@
+/JOB
+//NAME ROTATED-STATION-2-FACE-MEASURE-F
+//POS
+///NPOS 0,0,0,0,0,11
+///TOOL 0
+///POSTYPE ANGLE
+///ANGLE
+EX00010=-36.0000
+EX00011=-72.0000
+EX00012=-108.0000
+EX00013=-144.0000
+EX00014=-180.0000
+EX00015=-216.0000
+EX00016=-252.0000
+EX00017=-288.0000
+EX00018=-324.0000
+EX00019=-360.0000
+EX00020=0.0000
+//INST
+///DATE 2018/11/28 14:03
+///ATTR SC,RW
+///GROUP1 ST2
+NOP
+WAIT IN#(526)=ON
+CALL JOB:M-RESET-STATION-2
+'********************************
+'"
+'-------- Rotation step 0--------
+'"
+'--- Moving to 0 degrees ---
+MOVJ EX020 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 40
+'"
+'********************************
+'"
+'-------- Rotation step 1--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=41
+'"
+'--- Moving to 36 degrees ---
+MOVJ EX010 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 41
+'"
+'********************************
+'"
+'-------- Rotation step 2--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=42
+'"
+'--- Moving to 72 degrees ---
+MOVJ EX011 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 42
+'"
+'********************************
+'"
+'-------- Rotation step 3--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=43
+'"
+'--- Moving to 108 degrees ---
+MOVJ EX012 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 43
+'"
+'********************************
+'"
+'-------- Rotation step 4--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=44
+'"
+'--- Moving to 144 degrees ---
+MOVJ EX013 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 44
+'"
+'********************************
+'"
+'-------- Rotation step 5--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=45
+'"
+'--- Moving to 180 degrees ---
+MOVJ EX014 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 45
+'"
+'********************************
+'"
+'-------- Rotation step 6--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=46
+'"
+'--- Moving to 216 degrees ---
+MOVJ EX015 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 46
+'"
+'********************************
+'"
+'-------- Rotation step 7--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=47
+'"
+'--- Moving to 252 degrees ---
+MOVJ EX016 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 47
+'"
+'********************************
+'"
+'-------- Rotation step 8--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=48
+'"
+'--- Moving to 288 degrees ---
+MOVJ EX017 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 48
+'"
+'********************************
+'"
+'-------- Rotation step 9--------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=49
+'"
+'--- Moving to 324 degrees ---
+MOVJ EX018 VJ=100.00
+'"
+'---- Sinc signal ----
+DOUT OG#(74) 49
+'"
+'********************************
+'"
+'-------- Rotation step 10-------
+'"
+'---- Sinc signal ----
+WAIT IG#(74)=50
+'"
+'--- Moving to 360 degrees ---
+MOVJ EX019 VJ=100.00
+'"
+'---- Sinc signal ----
+*F200
+DOUT OG#(74) 50
+WAIT IG#(74)=12
+'"
+'********************************
+'"
+'----- M-RESET -----
+'"
+MRESET ST
+'"
+'********************************
+' 
+DOUT OG#(74) 0
+'********************************
+*end
+END

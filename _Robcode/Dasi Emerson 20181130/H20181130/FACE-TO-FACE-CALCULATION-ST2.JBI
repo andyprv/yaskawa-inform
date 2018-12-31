@@ -1,0 +1,113 @@
+/JOB
+//NAME FACE-TO-FACE-CALCULATION-ST2
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/09/17 13:31
+///ATTR SC,RW
+///LVARS 10,0,60,0,0,0,0,0
+NOP
+'********************************
+'"
+'Correction for face to face leng
+'fo each product
+'"
+'---- Get value -----
+SET LD052 D052
+SET LD053 D053
+MUL LD053 -1
+ADD LD052 LD053
+SET D054 LD052
+'****
+SET LD000 D054
+DIV LD000 100
+'****
+'---- CMF100M ----
+IFTHEN D005=1
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF100H  ----
+IFTHEN D005=2
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF100 ----
+IFTHEN D005=3
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF200M ----
+IFTHEN D005=4
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF200H ----
+IFTHEN D005=5
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF200 ----
+IFTHEN D005=6
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF200A ----
+IFTHEN D005=7
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF300M ----
+IFTHEN D005=8
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF300H  ----
+IFTHEN D005=9
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF300  ----
+IFTHEN D005=10
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF300A ----
+IFTHEN D005=11
+	 ADD LD000 0
+ENDIF
+'****
+'---- CMF400M  ----
+IFTHEN D005=12
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMF400A ----
+IFTHEN D005=13
+	 ADD LD000 0
+ENDIF
+'****
+'----  CMFS075M ----
+IFTHEN D005=14
+	 ADD LD000 -87
+ENDIF
+'****
+'----  CMFS100M ----
+IFTHEN D005=15
+	 ADD LD000 -87
+ENDIF
+'****
+'----  CMFS150M ----
+IFTHEN D005=16
+	 ADD LD000 -87
+ENDIF
+'****
+'----  F200S ----
+IFTHEN D005=32
+	 ADD LD000 -45
+ENDIF
+'****
+'"
+SET D054 LD000
+*END
+END

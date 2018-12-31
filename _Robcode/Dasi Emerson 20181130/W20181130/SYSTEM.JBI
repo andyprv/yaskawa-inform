@@ -1,0 +1,103 @@
+/JOB
+//NAME SYSTEM
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/11/14 13:44
+///ATTR SC,RW,SY
+///LVARS 10,0,0,0,0,0,0,0
+NOP
+PULSE OT#(28) T=0.20
+*START
+'*****
+'Cube welding robot home
+DIN LB000 SOUT#(57)
+IFTHEN LB000=1
+	 DOUT OT#(473) ON
+ELSE
+	 DOUT OT#(473) OFF
+ENDIF
+'*****
+'Cube robot in station 1 front
+DIN LB000 SOUT#(59)
+IFTHEN LB000=1
+	 DOUT OT#(475) ON
+ELSE
+	 DOUT OT#(475) OFF
+ENDIF
+'*****
+'Cube robot in station 1 back
+DIN LB000 SOUT#(60)
+IFTHEN LB000=1
+	 DOUT OT#(476) ON
+ELSE
+	 DOUT OT#(476) OFF
+ENDIF
+'*****
+'Cube robot in station 2 front
+DIN LB000 SOUT#(61)
+IFTHEN LB000=1
+	 DOUT OT#(477) ON
+ELSE
+	 DOUT OT#(477) OFF
+ENDIF
+'*****
+'Cube robot in station 2 back
+DIN LB000 SOUT#(62)
+IFTHEN LB000=1
+	 DOUT OT#(478) ON
+ELSE
+	 DOUT OT#(478) OFF
+ENDIF
+'*****
+'Cube station 1 home
+DIN LB000 SOUT#(63)
+IFTHEN LB000=1
+	 DOUT OT#(479) ON
+ELSE
+	 DOUT OT#(479) OFF
+ENDIF
+'*****
+'Cube station 2 home
+DIN LB000 SOUT#(64)
+IFTHEN LB000=1
+	 DOUT OT#(480) ON
+ELSE
+	 DOUT OT#(480) OFF
+ENDIF
+'*****
+'Cube park pos zone 1
+DIN LB000 SOUT#(66)
+IFTHEN LB000=1
+	 DOUT OT#(625) ON
+ELSE
+	 DOUT OT#(625) OFF
+ENDIF
+'*****
+'Cube park pos zone 2
+DIN LB000 SOUT#(67)
+IFTHEN LB000=1
+	 DOUT OT#(626) ON
+ELSE
+	 DOUT OT#(626) OFF
+ENDIF
+'*****
+'Cube park pos zone 3
+DIN LB000 SOUT#(68)
+IFTHEN LB000=1
+	 DOUT OT#(627) ON
+ELSE
+	 DOUT OT#(627) OFF
+ENDIF
+'*****
+'Cube park pos zone 4
+DIN LB000 SOUT#(69)
+IFTHEN LB000=1
+	 DOUT OT#(628) ON
+ELSE
+	 DOUT OT#(628) OFF
+ENDIF
+'*****
+DELAY 100
+JUMP *START
+END

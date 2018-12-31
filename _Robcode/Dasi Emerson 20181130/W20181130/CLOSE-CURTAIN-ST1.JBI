@@ -1,0 +1,23 @@
+/JOB
+//NAME CLOSE-CURTAIN-ST1
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/08/23 08:06
+///ATTR SC,RW
+NOP
+'"
+'-- Close curtain station 1 --
+'"
+DOUT OT#(10) ON
+DOUT OT#(9) OFF
+'"
+*curtain
+WAIT IN#(14)=OFF T=5.00
+IFTHEN IN#(14)=ON
+	 SETUALM 8000 "Curtain station 1 is not open" 0
+	 TIMER T=1.00
+	 JUMP *curtain
+ENDIF
+'"
+END

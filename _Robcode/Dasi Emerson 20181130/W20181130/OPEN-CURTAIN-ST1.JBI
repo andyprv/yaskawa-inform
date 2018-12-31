@@ -1,0 +1,17 @@
+/JOB
+//NAME OPEN-CURTAIN-ST1
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/09/04 12:06
+///ATTR SC,RW
+NOP
+'"
+'-- Open curtain station 1 --
+'"
+DOUT OT#(10) OFF
+DOUT OT#(9) ON
+WAIT IN#(14)=OFF
+DOUT OT#(9) OFF
+'"
+END

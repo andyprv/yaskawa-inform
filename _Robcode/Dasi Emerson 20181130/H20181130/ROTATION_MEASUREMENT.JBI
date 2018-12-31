@@ -1,0 +1,55 @@
+/JOB
+//NAME ROTATION_MEASUREMENT
+//POS
+///NPOS 0,0,0,2,0,0
+///TOOL 0
+///POSTYPE BASE
+///RECTAN
+///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00025=2953.144,-268.949,-4.242,-178.8222,2.0532,0.0496
+P00027=1882.857,-14.716,-4.137,179.9999,-2.7366,0.0022
+//INST
+///DATE 2018/09/04 08:34
+///ATTR SC,RW
+///GROUP1 RB1
+///LVARS 10,10,10,0,0,0,0,0
+NOP
+IFTHEN IN#(613)=ON
+	 GETREG LI000 MREG#(1)
+	 SET LB000 LI000
+	 JUMP LABEL: LB000
+ENDIF
+'********************************
+' 
+'CHECK ROTATING BOTTOM CAMERA
+'--ROBOT MOVES 450MM ABOVE CAMERA
+' 
+'********************************
+'-Position before rotate measure-
+MOVL P0027 V=416.7
+'*****
+SETREG MREG#(1) 40
+' 
+'********************************
+'-Position above rotate measure-
+'Home_auto_return register
+MOVL P0025 V=416.7 PL=0
+'*****
+SETREG MREG#(1) 41
+' 
+'********************************
+'--Take Photo--
+MACRO1 MJ#(1) ARGF5 ARGF7
+TIMER T=2.00
+' 
+'********************************
+' 
+MOVL P0027 V=416.7
+'*****
+SETREG MREG#(1) 40
+' 
+'********************************
+TIMER T=0.10
+' 
+'********************************
+END

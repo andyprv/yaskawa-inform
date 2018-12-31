@@ -1,0 +1,194 @@
+//LOGDATA
+///INDEX 1
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :EIOALLOC.DAT
+
+///INDEX 2
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :IFPANEL.DAT
+
+///INDEX 3
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :MACRO.DAT
+
+///INDEX 4
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :KEYALLOC.DAT
+
+///INDEX 5
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :IOMSGHST.DAT
+
+///INDEX 6
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :OPEORG.DAT
+
+///INDEX 7
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SYSTEM.SYS
+
+///INDEX 8
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :ABSO.DAT
+
+///INDEX 9
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :ALMHIST.DAT
+
+///INDEX 10
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :HOME2.DAT
+
+///INDEX 11
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :VARNAME.DAT
+
+///INDEX 12
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SVMON.DAT
+
+///INDEX 13
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :UWORD.DAT
+
+///INDEX 14
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :IOMNAME.DAT
+
+///INDEX 15
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :EXIONAME.DAT
+
+///INDEX 16
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :PSEUDOIN.DAT
+
+///INDEX 17
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :IONAME.DAT
+
+///INDEX 18
+DATE              :2018/11/30 13:41
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :CIOPRG.LST
+
+///INDEX 19
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :RE.PRM
+
+///INDEX 20
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SVC.PRM
+
+///INDEX 21
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SVS.PRM
+
+///INDEX 22
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :MF.PRM
+
+///INDEX 23
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SVP.PRM
+
+///INDEX 24
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :AMC.PRM
+
+///INDEX 25
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SVM.PRM
+
+///INDEX 26
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SV.PRM
+
+///INDEX 27
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SE.PRM
+
+///INDEX 28
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :RS.PRM
+
+///INDEX 29
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :AP.PRM
+
+///INDEX 30
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :FD.PRM
+
+///INDEX 31
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :CIO.PRM
+
+///INDEX 32
+DATE              :2018/11/30 13:40
+EVENT             :FILE SAVE END
+LOGIN NAME        :
+FILE NAME         :SC.PRM
+
+

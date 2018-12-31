@@ -1,0 +1,54 @@
+/JOB
+//NAME ROTATION_MEASUREMENT-REAR-S1
+//POS
+///NPOS 0,0,0,2,0,0
+///TOOL 0
+///POSTYPE BASE
+///RECTAN
+///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00025=2953.144,-268.949,-4.242,-178.8222,2.0532,0.0496
+P00027=1882.857,-14.716,-4.137,179.9999,-2.7366,0.0022
+//INST
+///DATE 2018/08/27 14:27
+///ATTR SC,RW
+///GROUP1 RB1
+///LVARS 10,10,10,0,0,0,0,0
+NOP
+'********************************
+' 
+'CHECK ROTATING BOTTOM CAMERA
+'--ROBOT MOVES 450MM ABOVE CAMERA
+' 
+'********************************
+MOVL P0027 V=416.7
+'*****
+SETREG MREG#(1) 40
+' 
+'********************************
+'-Position above rotate measure-
+MOVL P0025 V=416.7 PL=0
+'*****
+SETREG MREG#(1) 41
+' 
+'********************************
+'--Take Photo--
+'********************************
+' 
+'--Read data from HMI--
+CALL JOB:READ_ROTATING-FLANGE-STATION-1
+' 
+'********************************
+'-Position before rotate measure-
+MOVL P0027 V=416.7
+'*****
+SETREG MREG#(1) 40
+' 
+'********************************
+'********************************
+'--Calculate rotating for CMF400M
+SET LD004 D007
+MUL LD004 100
+SUB LD004 300000
+SET D031 LD004
+'********************************
+END

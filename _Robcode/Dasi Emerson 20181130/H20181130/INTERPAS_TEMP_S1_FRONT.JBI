@@ -1,0 +1,124 @@
+/JOB
+//NAME INTERPAS_TEMP_S1_FRONT
+//POS
+///NPOS 10,0,0,1,0,0
+///TOOL 0
+///POSTYPE PULSE
+///PULSE
+C00000=-101348,-301739,-75175,0,-150257,-1
+C00001=-147427,-131055,-106217,-145775,-41590,131419
+C00002=-153331,-35877,-74189,-321186,-29882,192221
+C00003=-155328,-30626,-87851,-327165,-44543,196864
+C00004=-163904,24363,-42515,-327899,-46960,198020
+C00005=-165999,7110,-68697,-330268,-55536,203652
+C00006=-170004,19137,-44972,-328695,-44744,204384
+C00007=-173107,20689,-49238,-329902,-49195,206603
+C00008=-141166,-27464,-92675,-327505,-51275,190745
+C00009=-130137,-204250,-69426,-68286,-101530,70794
+P00000=0,-222014,-26224,0,-132993,0
+//INST
+///DATE 2018/08/28 13:53
+///ATTR SC,RW
+///GROUP1 RB1
+///LVARS 0,0,10,0,0,0,0,0
+NOP
+DOUT OG#(68) 0
+WAIT IG#(68)=101
+'********************************
+'Check interpass tempratur
+'Preset value is 150 degree
+' 
+DOUT OG#(68) 0
+'Welding Robot program
+'--1=CMF100M --
+'--2=
+'--3=
+'--4=
+'--5=
+'--6=
+'--7=
+'--8=
+'--9=
+'--10=
+'--11=
+'--12=CMF400M
+'--13=
+' 
+'Welding Robot program check
+' 
+'********************************
+WAIT SOUT#(57)=ON
+WAIT IN#(523)=ON
+' 
+'********************************
+'--Home return register--
+SETREG MREG#(1) 200
+MOVL P0000 V=416.7
+'********************************
+'--Home return register--
+SETREG MREG#(1) 201
+MOVJ C00000 VJ=35.00
+' 
+' 
+'********************************
+'--Home return register--
+SETREG MREG#(1) 201
+MOVJ C00001 VJ=25.00
+' 
+'********************************
+'Home_auto_return register
+SETREG MREG#(1) 202
+MOVJ C00002 VJ=15.00
+' 
+'********************************
+'Home_auto_return register
+SETREG MREG#(1) 203
+MOVJ C00003 VJ=15.00
+' 
+'********************************
+'Measure front tempratur
+'Home_auto_return register
+SETREG MREG#(1) 204
+' 
+'********************************
+'Sensor CMF400M
+IFTHEN D005=12
+	 MOVL C00004 V=166.7
+ENDIF
+' 
+'Sensor F300S
+IFTHEN D005=35
+	 MOVL C00005 V=166.7
+	 MOVL C00006 V=166.7
+ENDIF
+'Sensor CMF300S
+IFTHEN D005=8
+	 MOVL C00007 V=166.7
+ENDIF
+' 
+'********************************
+*Temp
+CALL JOB:READ_TEMPERATURE-STATION-1
+IFTHEN D008<1500
+ENDIF
+JUMP *Temp IF D008>1500
+'********************************
+'--Home return register--
+SETREG MREG#(1) 205
+MOVJ C00008 VJ=15.00
+' 
+'********************************
+'--Home return register--
+SETREG MREG#(1) 209
+MOVJ C00009 VJ=25.00
+' 
+'********************************
+'--Home return register--
+SETREG MREG#(1) 210
+MOVJ P0000 VJ=35.00
+' 
+'********************************
+'--Signal to HMI Temp ok--
+'********************************
+DOUT OG#(68) 101
+END

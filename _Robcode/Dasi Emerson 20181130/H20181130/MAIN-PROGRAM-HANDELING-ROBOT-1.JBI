@@ -1,0 +1,1203 @@
+/JOB
+//NAME MAIN-PROGRAM-HANDELING-ROBOT-1
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/09/17 14:42
+///ATTR SC,RW
+NOP
+*TOP
+DOUT OT#(578) OFF
+DOUT OT#(579) OFF
+'*****
+'Main program handeling robot
+'*****
+'********************************
+IFTHEN B001=10
+	'+++++ measuring flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10 ANDIF B001<100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT IF B001<100
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 PAUSE IF B000=1
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		 PAUSE IF B000=1
+		'get flange pick hight
+		 MACRO1 MJ#(1) ARGF3 ARGF9
+		 PAUSE IF B000=1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get flange pos 1
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET_NEW_FLANGE_POS-1-STAT-1-H&D
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** flange check
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:CONTOUR_MEASUREMENT-PRODUCT-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** return flange
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:RETURN_FLANGE_TO-POS-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** rotation measurement
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATION_MEASUREMENT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** repick flange for orientat
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:REPICK_FLANGE_-POSITION-1-STAT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=11
+	'+++++ tacking flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get inner diameter inlet /outlet
+		 MACRO1 MJ#(1) ARGF9 ARGF61
+		'get timer value backin gas
+		 MACRO1 MJ#(1) ARGF10 ARGF67
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** measure face body and plac
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:MEASURE-FACE-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** send new data
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:SEND-SHIFT-FRONT-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=190
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=12
+	'+++++ measuring flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 PAUSE IF B000=1
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		 PAUSE IF B000=1
+		'get flange pick hight
+		 MACRO1 MJ#(1) ARGF3 ARGF9
+		 PAUSE IF B000=1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get flange pos 2
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET_NEW_FLANGE_POS-2-STAT-1-H&D
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** flange check
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:CONTOUR_MEASUREMENT-PRODUCT-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** return flange
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:RETURN_FLANGE_TO-POS-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** rotation measurement
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATION_MEASUREMENT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** repick flange for orientat
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:REPICK_FLANGE_-POSITION-1-STAT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=13
+	'+++++ tacking flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get inner diameter inlet /outlet
+		 MACRO1 MJ#(1) ARGF9 ARGF61
+		'get timer value backin gas
+		 MACRO1 MJ#(1) ARGF11 ARGF67
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** measure face body and plac
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:MEASURE-FACE-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** send new data
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:SEND-SHIFT-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=190
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'Senario 2
+IFTHEN B001=14 ORIF B001=20 ORIF B001=27
+	'TIR measurement front
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange F
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-FRONT-ST1
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF24 ARGF35
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF20 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=34 ORIF B001=40 ORIF B001=46
+	'TIR measurement front
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange F
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-FRONT-ST1
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF24 ARGF35
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF20 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=16 ORIF B001=23 ORIF B001=29
+	'TIR measurement back
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange B
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-BACK-ST1
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF25 ARGF36
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF21 ARGF71
+		'send FACE TO FACE
+		 MACRO1 MJ#(2) ARGF28 ARGF54
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=35 ORIF B001=41 ORIF B001=47
+	'TIR measurement back
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange B
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-BACK-ST1
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF25 ARGF36
+		'send TIR step back
+		 MACRO1 MJ#(2) ARGF21 ARGF71
+		'send FACE TO FACE
+		 MACRO1 MJ#(2) ARGF28 ARGF54
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=19 ORIF B001=26
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-FRONT-ST1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=22 ORIF B001=28 ORIF B001=33
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-BACK-ST1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=39 ORIF B001=45
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF4
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-BACK-ST1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S1-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'*****
+'***** station 2 *****
+'*****
+'********************************
+IFTHEN B001=110
+	'+++++ measuring flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 PAUSE IF B000=1
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		 PAUSE IF B000=1
+		'get flange pick hight
+		 MACRO1 MJ#(1) ARGF3 ARGF9
+		 PAUSE IF B000=1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get flange pos 1
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET_NEW_FLANGE_POS-1-STAT-1-H&D
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** flange check
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:CONTOUR_MEASUREMENT-PRODUCT-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** return flange
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:RETURN_FLANGE_TO-POS-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** rotation measurement
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATION_MEASUREMENT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** repick flange for orientat
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:REPICK_FLANGE_-POSITION-1-STAT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=111
+	'+++++ tacking flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get inner diameter inlet /outlet
+		 MACRO1 MJ#(1) ARGF9 ARGF61
+		'get timer value backin gas
+		 MACRO1 MJ#(1) ARGF10 ARGF67
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** measure face body and plac
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:MEASURE-FACE-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** send new data
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:SEND-SHIFT-FRONT-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=190
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=121
+	'+++++ measuring flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 PAUSE IF B000=1
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		 PAUSE IF B000=1
+		'get flange pick hight
+		 MACRO1 MJ#(1) ARGF3 ARGF9
+		 PAUSE IF B000=1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get flange pos 2
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET_NEW_FLANGE_POS-2-STAT-1-H&D
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** flange check
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:CONTOUR_MEASUREMENT-PRODUCT-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** return flange
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:RETURN_FLANGE_TO-POS-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** rotation measurement
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATION_MEASUREMENT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** repick flange for orientat
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:REPICK_FLANGE_-POSITION-1-STAT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'********************************
+IFTHEN B001=131
+	'+++++ tacking flange +++++
+	'
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get inner diameter inlet /outlet
+		 MACRO1 MJ#(1) ARGF9 ARGF61
+		'get timer value backin gas
+		 MACRO1 MJ#(1) ARGF11 ARGF67
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** measure face body and plac
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:MEASURE-FACE-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** send new data
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:SEND-SHIFT-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** move to park position
+	 IFTHEN B002=190
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'Senario 2
+IFTHEN B001=141 ORIF B001=120 ORIF B001=127
+	'TIR measurement front
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange F
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-FRONT-ST2
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF26 ARGF35
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF22 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=134 ORIF B001=140 ORIF B001=146
+	'TIR measurement front
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange F
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-BACK-ST2
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF26 ARGF35
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF22 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=161 ORIF B001=123 ORIF B001=129
+	'TIR measurement back
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange B
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-BACK-ST2
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF27 ARGF36
+		'send TIR step front
+		 MACRO1 MJ#(2) ARGF23 ARGF71
+		'send FACE TO FACE
+		 MACRO1 MJ#(2) ARGF29 ARGF54
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=135 ORIF B001=141 ORIF B001=147
+	'TIR measurement back
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** toolcheck
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF60
+		'get flange hight
+		 MACRO1 MJ#(1) ARGF2 ARGF6
+		'get flange diameter
+		 MACRO1 MJ#(1) ARGF1 ARGF10
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement flange B
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-MEASUREMENT-BACK-ST2
+		'send TIR value
+		 MACRO1 MJ#(2) ARGF27 ARGF36
+		'send TIR step back
+		 MACRO1 MJ#(2) ARGF23 ARGF71
+		'send FACE TO FACE
+		 MACRO1 MJ#(2) ARGF29 ARGF54
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=119 ORIF B001=129
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-FRONT-ST2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=122 ORIF B001=128 ORIF B001=133
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-BACK-ST2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=139 ORIF B001=145
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		'get sensor model
+		 MACRO1 MJ#(1) ARGF4 ARGF4
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** temp check
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:HEAT-SENS-BACK-ST2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-PARK-POS-FROM-SENSOR-S2-B
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+JUMP *TOP
+END

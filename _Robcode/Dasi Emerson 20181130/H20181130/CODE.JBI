@@ -1,0 +1,18 @@
+/JOB
+//NAME CODE
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/09/03 08:45
+///ATTR SC,RW,SY
+NOP
+*top
+'*****
+'get code and subcode
+'*****
+DIN B001 IG#(75)
+DIN B002 IG#(76)
+'*****
+DELAY 20
+JUMP *top
+END

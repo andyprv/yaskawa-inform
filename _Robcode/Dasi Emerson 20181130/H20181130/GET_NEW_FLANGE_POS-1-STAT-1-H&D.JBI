@@ -1,0 +1,111 @@
+/JOB
+//NAME GET_NEW_FLANGE_POS-1-STAT-1-H&D
+//POS
+///NPOS 0,0,0,6,0,0
+///TOOL 0
+///POSTYPE BASE
+///RECTAN
+///RCONF 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00002=0.000,0.000,81.500,0.0000,0.0000,0.0000
+///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00044=1854.454,-14.726,-4.135,-179.6974,-1.0435,-0.0157
+///RCONF 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00045=2066.633,-243.154,-1486.779,-179.9992,0.0152,59.9856
+///RCONF 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+P00046=2142.000,-241.052,-1888.393,179.9058,-0.1782,60.0000
+P00047=2142.500,-241.035,-2082.000,179.8557,-0.0548,59.8113
+P00048=2142.500,-241.035,-2000.500,179.8557,-0.0548,59.8113
+//INST
+///DATE 2018/11/28 16:01
+///ATTR SC,RW
+///GROUP1 RB1
+///LVARS 2,2,10,0,0,0,0,0
+NOP
+IFTHEN IN#(613)=ON
+	 GETREG LI000 MREG#(1)
+	 SET LB000 LI000
+	 JUMP LABEL: LB000
+ENDIF
+'********************************
+DOUT OT#(3) OFF
+PULSE OT#(2) T=1.00
+MOVL P0044 V=833.3
+'*****
+SETREG MREG#(1) 30
+' 
+'********************************
+*Retry
+'800mm above position 1
+MOVL P0045 V=416.7
+'*****
+SETREG MREG#(1) 31
+' 
+*no-prod
+CALL JOB:UNCLAMP_GRIPPER IF IN#(10)=ON
+' 
+'********************************
+' 
+IFTHEN IN#(9)=OFF ANDIF IN#(10)=OFF
+	 SETUALM 8000 "Product in gripper" 0
+ENDIF
+WAIT IN#(9)=ON
+'Remove flange by hand
+' 
+'********************************
+'Above pick position
+'Home_auto_return register
+MOVL P0046 V=250.0
+' 
+'********************************
+'Get Flange type Data
+' 
+SET P0048 P0047
+GETE LD001 P0048 (3)
+SET LD009 D009
+MUL LD009 100
+SETE P0002 (3) LD009
+ADD LD001 LD009
+SETE P0048 (3) LD001
+'********************************
+'Pick flange from pickposition
+' 
+'********************************
+MOVL P0048 V=41.7
+' 
+SFTOF
+' 
+'********************************
+'Close gripper
+CALL JOB:CLAMP_GRIPPER
+SET B013 1
+SET B014 0
+' 
+'********************************
+'Move to check Position
+MOVL P0046 V=250.0
+'*****
+' 
+'********************************
+' 
+'********************************
+'Measure height for weld distance
+CALL JOB:FLANGE-HEIGHT-MEASURE-POS-1
+' 
+JUMP *no-prod IF B022=1
+'********************************
+'Home_auto_return register
+*31
+*30
+MOVL P0044 V=416.7
+'*****
+SETREG MREG#(1) 30
+' 
+'********************************
+'Reset variables and markers
+SET B011 0
+SET B013 1
+SET B014 0
+SET B018 1
+SET B019 0
+'********************************
+END

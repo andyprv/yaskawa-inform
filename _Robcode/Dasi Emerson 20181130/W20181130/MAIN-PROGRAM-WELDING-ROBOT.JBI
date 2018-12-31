@@ -1,0 +1,1476 @@
+/JOB
+//NAME MAIN-PROGRAM-WELDING-ROBOT
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/11/30 10:58
+///ATTR SC,RW
+NOP
+*TOP
+DOUT OT#(675) OFF
+DOUT OT#(674) OFF
+PULSE OT#(632)
+'*****
+'Main program welding robot
+'*****
+IFTHEN B001=11
+	*11
+	'***** park pos flange front
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data/
+	'park pos station 1 front
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET-SHIFT-VALUE
+		'***** weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'***** sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 DOUT OT#(656) OFF
+		 TIMER T=0.20
+		 DOUT OT#(656) ON
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 1
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 2
+	 IFTHEN B002=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=110
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 3
+	 IFTHEN B002=120
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-3
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=130
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 4
+	 IFTHEN B002=140
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-4
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=150
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 5
+	 IFTHEN B002=160
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home
+	 IFTHEN B002=180
+		 MACRO1 MJ#(3)
+		 DOUT OT#(656) OFF
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=13
+	*13
+	'***** home pos
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data/
+	'park pos station 1 front
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET-SHIFT-VALUE-BACK
+		'***** weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'***** sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		*1
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 DOUT OT#(656) OFF
+		 TIMER T=0.20
+		 DOUT OT#(656) ON
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 1
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-1-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=90
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 2
+	 IFTHEN B002=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-2-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=110
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 3
+	 IFTHEN B002=120
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-3-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=130
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 4
+	 IFTHEN B002=140
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-4-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=150
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 5
+	 IFTHEN B002=160
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-5-BACK-S1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=170
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home
+	 IFTHEN B002=180
+		 MACRO1 MJ#(3)
+		 DOUT OT#(656) OFF
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'Senario 2
+IFTHEN B001=50
+	*50
+	'***** additinal tack station 1*
+	'
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF100 ARGF30
+		'get sensor type
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** additional tack
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ADDITIONAL-TACK-FRONT-ST1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 PSTART JOB:GO-FROM-S1-FRONT-TO-HOME-R1 SUB1
+		 PSTART JOB:HOME-POSITIE-STATION-1 SUB2
+		 PWAIT SUB1
+		 PWAIT SUB2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=51
+	*51
+	'***** additinal tack station 1*
+	'
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF101 ARGF30
+		'get sensor type
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** additional tack
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ADDITIONAL-TACK-BACK-ST1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 PSTART JOB:GO-FROM-S1-BACK-TO-HOME-R1 SUB1
+		 PSTART JOB:HOME-POSITIE-STATION-1 SUB2
+		 PWAIT SUB1
+		 PWAIT SUB2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=14 ORIF B001=20 ORIF B001=27
+	*14
+	*20
+	*27
+	'***** TIR measurement front ****
+	'
+	'***** home
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-1-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=46 ORIF B001=34 ORIF B001=40
+	*46
+	*40
+	*34
+	'***** TIR measurement front ****
+	'
+	'***** home
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-1-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=15
+	*15
+	'***** welding front station 1 **
+	'
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF100 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF20 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 PSTART JOB:HOME-POSITIE-STATION-1 SUB1
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 PWAIT SUB1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get welding proces data
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** welding
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:WELDING-FRONT-ST-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=47 ORIF B001=16 ORIF B001=23
+	*47
+	*16
+	*23
+	'***** TIR measurement back ****
+	'
+	'***** home
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-1-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=29 ORIF B001=35 ORIF B001=41
+	*29
+	*35
+	*41
+	'***** TIR measurement back ****
+	'
+	'***** home
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-1-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=17
+	*17
+	'***** welding back station 1 **
+	'
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF101 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF21 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get welding proces data
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** welding
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:WELDING-BACK-ST-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=80
+		 MACRO1 MJ#(3)
+		 PSTART JOB:HOME-POSITIE-STATION-1 SUB1
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME-R1
+		 PWAIT SUB1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=18 ORIF B001=25 ORIF B001=32
+	*18
+	*25
+	*32
+	'manual cleaning
+	'***** manual cleaning
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:CLEACING-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=38 ORIF B001=44
+	*38
+	*44
+	'manual cleaning
+	'***** manual cleaning
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:CLEACING-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITIE-STATION-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=30
+	*30
+	'TIR correction
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park position
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF100 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF21 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR correction
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-CORRECTION-FRONT-ST-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-1-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-FRONT-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=31
+	*31
+	'TIR correction
+	'***** home position
+	 IFTHEN B002=10
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park position
+	 IFTHEN B002=30
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-1-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF101 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF21 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR correction
+	 IFTHEN B002=50
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-CORRECTION-BACK-ST-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos front
+	 IFTHEN B002=60
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-2-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S1-BACK-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'*****
+IFTHEN B001=111
+	*111
+	'***** park pos flange front
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data/
+	'park pos station 1 front
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET-SHIFT-VALUE-S2-F
+		'***** weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'***** sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 DOUT OT#(656) OFF
+		 TIMER T=0.20
+		 DOUT OT#(656) ON
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 1
+	 IFTHEN B002=80 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-1-FRONTS2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=90 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 2
+	 IFTHEN B002=100 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-2-FRONTS2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=110 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 3
+	 IFTHEN B002=120 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-3-FRONTS2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=130 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 4
+	 IFTHEN B002=140 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-4-FRONTS2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=150 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 5
+	 IFTHEN B002=160 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-5-FRONTS2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=170 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home
+	 IFTHEN B002=180 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 DOUT OT#(656) OFF
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=113
+	*113
+	'***** home pos
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data/
+	'park pos station 1 front
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GET-SHIFT-VALUE-S2-B
+		'***** weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'***** sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 DOUT OT#(656) OFF
+		 TIMER T=0.20
+		 DOUT OT#(656) ON
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 1
+	 IFTHEN B002=80 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-1-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=90 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 2
+	 IFTHEN B002=100 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-2-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=110 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 3
+	 IFTHEN B002=120 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-3-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=130 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 4
+	 IFTHEN B002=140 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-4-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=150 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tack 5
+	 IFTHEN B002=160 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TACK-5-BACK-S2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos 1
+	 IFTHEN B002=170 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home
+	 IFTHEN B002=180 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 DOUT OT#(656) OFF
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+'Senario 2
+IFTHEN B001=150
+	*150
+	'***** additinal tack station 2*
+	'
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF102 ARGF30
+		'get sensor type
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** additional tack
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ADDITIONAL-TACK-FRONT-ST2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 PSTART JOB:GO-FROM-S2-FRONT-TO-HOME-R1 SUB1
+		 PSTART JOB:HOME-POSITIE-STATION-2 SUB2
+		 PWAIT SUB1
+		 PWAIT SUB2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=151
+	*151
+	'***** additinal tack station 1*
+	'
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lenght
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF103 ARGF30
+		'get sensor type
+		 MACRO1 MJ#(1) ARGF4 ARGF5
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** additional tack
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ADDITIONAL-TACK-BACK-ST2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 PSTART JOB:GO-FROM-S2-BACK-TO-HOME-R1 SUB1
+		 PSTART JOB:HOME-POSITIE-STATION-2 SUB2
+		 PWAIT SUB1
+		 PWAIT SUB2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=114 ORIF B001=120 ORIF B001=127
+	*114
+	*120
+	*127
+	'***** TIR measurement front ****
+	'
+	'***** home
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-2-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=146 ORIF B001=134 ORIF B001=140
+	*146
+	*140
+	*134
+	'***** TIR measurement front ****
+	'
+	'***** home
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-2-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=115
+	*115
+	'***** welding front station 2 **
+	'
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF102 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF20 ARGF70
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 PSTART JOB:HOME-POSITIE-STATION-2 SUB1
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 PWAIT SUB1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get welding proces data
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** welding
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:WELDING-FRONT-ST-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=80 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME-R1
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=147 ORIF B001=116 ORIF B001=123
+	*147
+	*116
+	*123
+	'***** TIR measurement back ****
+	'
+	'***** home
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-2-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=129 ORIF B001=135 ORIF B001=141
+	*129
+	*135
+	*141
+	'***** TIR measurement back ****
+	'
+	'***** home
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR measurement
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:ROTATED-STATION-2-FACE-MEASURE-F
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=117
+	*117
+	'***** welding back station 2 **
+	'
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF103 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF21 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange front
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** get welding proces data
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 TIMER T=1.00
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** welding
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:WELDING-BACK-ST-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos flange back
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=80 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 PSTART JOB:HOME-POSITIE-STATION-2 SUB1
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME-R1
+		 PWAIT SUB1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=118 ORIF B001=125 ORIF B001=132
+	*118
+	*125
+	*132
+	'manual cleaning
+	'***** manual cleaning
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:CLEACING-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=138 ORIF B001=144
+	*138
+	*144
+	'manual cleaning
+	'***** manual cleaning
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:CLEACING-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITIE-STATION-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=130 ORIF B001=136 ORIF B001=142
+	*130
+	*136
+	*142
+	'TIR correction
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park position
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-FRONT
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF102 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF22 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR correction
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-CORRECTION-FRONT-ST-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos front
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-3-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-FRONT-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+IFTHEN B001=131 ORIF B001=137 ORIF B001=143
+	*131
+	*137
+	*143
+	'TIR correction
+	'***** home position
+	 IFTHEN B002=10 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:HOME-POSITION-ROBOT-1
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** tool check
+	 IFTHEN B002=20 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TOOL-CHECK-AUTOMATICALY
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park position
+	 IFTHEN B002=30 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-TO-STATION-2-BACK
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** reading new data
+	 IFTHEN B002=40 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		'get sensor lengt
+		 MACRO1 MJ#(1) ARGF8 ARGF11
+		'get weld diameter
+		 MACRO1 MJ#(1) ARGF9 ARGF12
+		'get weld shift
+		 MACRO1 MJ#(1) ARGF103 ARGF30
+		'get TIR step
+		 MACRO1 MJ#(1) ARGF23 ARGF71
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** TIR correction
+	 IFTHEN B002=50 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:TIR-CORRECTION-BACK-ST-2
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** park pos front
+	 IFTHEN B002=60 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:PARK-POS-ZONE-4-AUTO
+		 MACRO1 MJ#(4)
+	 ENDIF
+	'***** home position
+	 IFTHEN B002=70 ANDIF B001>=100
+		 MACRO1 MJ#(3)
+		 CALL JOB:GO-FROM-S2-BACK-TO-HOME-R1
+		 MACRO1 MJ#(4)
+	 ENDIF
+ENDIF
+JUMP *TOP
+END

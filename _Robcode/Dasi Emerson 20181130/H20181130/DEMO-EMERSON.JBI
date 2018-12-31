@@ -1,0 +1,67 @@
+/JOB
+//NAME DEMO-EMERSON
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE 2018/10/05 08:24
+///ATTR SC,RW
+NOP
+*top
+DOUT OG#(72) 1
+WAIT IG#(72)=1
+'+++++ measuring flange +++++
+'***** home pos
+CALL JOB:HOME-POSITION-ROBOT
+DOUT OG#(72) 2
+WAIT IG#(72)=2
+'***** reading new data
+'get flange diameter
+SET D010 27432
+'get flange hight
+SET D006 22852
+'get flange pick hight
+SET D009 640
+'***** get flange pos 1
+CALL JOB:GET_NEW_FLANGE_POS-1-STAT-1-H&D
+'***** flange check
+CALL JOB:CONTOUR_MEASUREMENT-PRODUCT-S1
+'***** rotation measurement
+CALL JOB:ROTATION_MEASUREMENT
+'***** repick flange for orientat
+CALL JOB:REPICK_FLANGE_-POSITION-1-STAT-1
+'***** home position
+CALL JOB:HOME-POSITION-ROBOT
+'********************************
+'+++++ tacking flange +++++
+'***** home pos
+CALL JOB:HOME-POSITION-ROBOT
+'***** tool check
+CALL JOB:HANDLING-TOOL-CHECK-CALIBRATION
+'***** park pos flange front
+CALL JOB:GO-TO-STATION-1-FRONT
+'***** reading new data
+'get sensor model
+SET D005 8
+'get sensor lenght
+SET D060 1320
+'get inner diameter inlet /outlet
+SET D061 340
+'get timer value backin gas
+SET D067 60
+'***** measure face body and plac
+CALL JOB:MEASURE-FACE-STATION-1-FRONT
+'***** move to park position
+DOUT OG#(72) 3
+WAIT IG#(72)=3
+CALL JOB:GO-TO-PARK-POS-DEMO-PRG
+'***** move to park position
+CALL JOB:GO-FROM-S1-FRONT-TO-HOME
+DOUT OG#(72) 4
+'***** flange return
+CALL JOB:RETURN_FLANGE_TO-POS-1
+'***** home pos
+CALL JOB:HOME-POSITION-ROBOT
+DOUT OG#(72) 1
+WAIT IG#(72)=1
+JUMP *top
+END
