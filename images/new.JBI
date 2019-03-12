@@ -17,7 +17,32 @@ IFTHEN (aaa)
     CALL JOB:bbb
 ENDIF
 
+IFTHEN (e800)
+    CALL JOB:job1
+ENDIF
 
+/JOB
+//NAME tite
+//POS
+///NPOS 0,0,0,0,0,0
+//INST
+///DATE Insert datetime string (⇧⌘I or Ctrl+Shift+I)
+///ATTR SC,RW
+NOP
+'***** Enter comment *****
+
+
+    /JOB
+    //NAME tit
+    //POS
+    ///NPOS 0,0,0,0,0,0
+    //INST
+    ///DATE 2019-01-15 12:59:45
+    ///ATTR SC,RW
+    NOP
+    '***** comment *****
+    
+    
 
 
 
